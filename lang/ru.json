@@ -20,7 +20,10 @@
     "No products found.": "Товары не найдены.",
     "No categories found.": "Категории не найдены.",
     "Delete this product?": "Удалить этот товар?",
-    "Slug": "Слаг",
+    "Slug": "Символьный код",
     "Product count": "Товаров",
-    "Stockraft": "Stockraft"
+    "Stockraft": "Stockraft",
+    "Product created successfully.": "Товар успешно создан.",
+    "Product updated successfully.": "Товар успешно обновлён.",
+    "Product deleted successfully.": "Товар успешно удалён."
 }

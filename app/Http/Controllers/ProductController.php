@@ -7,15 +7,31 @@ use App\Http\Requests\UpdateProductRequest;
 use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
 use Illuminate\View\View;
 
 class ProductController extends Controller
 {
-    public function index(): View
-    {
-        $products = Product::with('category')->latest()->paginate(15);
+    private const SORTABLE = ['name', 'category', 'price', 'stock', 'is_active'];
 
-        return view('products.index', compact('products'));
+    public function index(Request $request): View
+    {
+        $sort      = in_array($request->query('sort'), self::SORTABLE) ? $request->query('sort') : 'name';
+        $direction = $request->query('direction') === 'desc' ? 'desc' : 'asc';
+
+        $query = Product::with('category');
+
+        if ($sort === 'category') {
+            $query->join('categories', 'products.category_id', '=', 'categories.id')
+                  ->orderBy('categories.name', $direction)
+                  ->select('products.*');
+        } else {
+            $query->orderBy($sort, $direction);
+        }
+
+        $products = $query->paginate(15)->withQueryString();
+
+        return view('products.index', compact('products', 'sort', 'direction'));
     }
 
     public function create(): View
@@ -33,7 +49,7 @@ class ProductController extends Controller
         Product::create($data);
 
         return redirect()->route('products.index')
-            ->with('success', 'Product created successfully.');
+            ->with('success', __('Product created successfully.'));
     }
 
     public function edit(Product $product): View
@@ -51,7 +67,7 @@ class ProductController extends Controller
         $product->update($data);
 
         return redirect()->route('products.index')
-            ->with('success', 'Product updated successfully.');
+            ->with('success', __('Product updated successfully.'));
     }
 
     public function destroy(Product $product): RedirectResponse
@@ -59,6 +75,6 @@ class ProductController extends Controller
         $product->delete();
 
         return redirect()->route('products.index')
-            ->with('success', 'Product deleted successfully.');
+            ->with('success', __('Product deleted successfully.'));
     }
 }
