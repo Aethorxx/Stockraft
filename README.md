@@ -1,10 +1,16 @@
 # Stockraft
 
-A small Laravel shop application demonstrating Eloquent ORM relationships, resource CRUD, and clean Laravel conventions.
+Учебное Laravel-приложение интернет-магазина, демонстрирующее Eloquent ORM, ресурсный CRUD и стандартные соглашения Laravel.
 
-## Data Model
+## Стек
 
-**Category** `hasMany` **Product**. A category has a name and an auto-generated slug. A product belongs to exactly one category and carries a price, stock count, and an active flag.
+- **Laravel 13**, PHP 8.2+
+- **SQLite** — база данных в файле, сервер не нужен
+- **AdminLTE 3** (Bootstrap 4) — UI через CDN, без сборки
+
+## Модель данных
+
+**Category** `hasMany` **Product**. Slug генерируется автоматически из названия через модельное событие `creating`.
 
 ```
 categories
@@ -16,7 +22,7 @@ products
   stock (unsigned int), is_active (boolean), timestamps
 ```
 
-## Clone and Run
+## Установка и запуск
 
 ```bash
 git clone <repo-url>
@@ -34,4 +40,23 @@ php artisan migrate --seed
 php artisan serve
 ```
 
-Open **http://localhost:8000** — the root redirects to the products list, which displays 14 seeded products across 5 categories.
+Открыть **http://localhost:8000** — корень перенаправляет на список товаров (38 товаров, 10 категорий).
+
+> `npm install` **не требуется** — стили и скрипты подключены через CDN.
+
+## Сброс и очистка базы
+
+Пересоздать таблицы и загрузить тестовые данные заново:
+
+```bash
+php artisan migrate:fresh --seed
+```
+
+Полная очистка локального окружения:
+
+```bash
+php artisan migrate:fresh        # сбросить все таблицы
+# или удалить файл БД целиком:
+rm database/database.sqlite && touch database/database.sqlite
+php artisan migrate --seed
+```
