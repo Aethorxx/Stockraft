@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Edit Product')
+@section('title', __('Edit Product'))
 
 @section('content')
     <div class="row">
@@ -15,8 +15,8 @@
                         @method('PUT')
                         @include('products._form')
                         <div class="mt-3">
-                            <button type="submit" class="btn btn-primary">Update Product</button>
-                            <a href="{{ route('products.index') }}" class="btn btn-secondary ml-2">Cancel</a>
+                            <button type="submit" class="btn btn-primary">{{ __('Update') }}</button>
+                            <a href="{{ route('products.index') }}" class="btn btn-secondary ml-2">{{ __('Cancel') }}</a>
                         </div>
                     </form>
                 </div>

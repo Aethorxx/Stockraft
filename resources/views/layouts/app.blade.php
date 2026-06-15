@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ app()->getLocale() }}">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -18,11 +18,6 @@
                 </a>
             </li>
         </ul>
-        <ul class="navbar-nav ml-auto">
-            <li class="nav-item">
-                <span class="nav-link font-weight-bold">Stockraft</span>
-            </li>
-        </ul>
     </nav>
 
     <aside class="main-sidebar sidebar-dark-primary elevation-4">
@@ -36,14 +31,14 @@
                         <a href="{{ route('products.index') }}"
                            class="nav-link {{ request()->is('products*') ? 'active' : '' }}">
                             <i class="nav-icon fas fa-box"></i>
-                            <p>Products</p>
+                            <p>{{ __('Products') }}</p>
                         </a>
                     </li>
                     <li class="nav-item">
                         <a href="{{ route('categories.index') }}"
                            class="nav-link {{ request()->is('categories*') ? 'active' : '' }}">
                             <i class="nav-icon fas fa-tags"></i>
-                            <p>Categories</p>
+                            <p>{{ __('Categories') }}</p>
                         </a>
                     </li>
                 </ul>
@@ -74,9 +69,7 @@
         </div>
     </div>
 
-    <footer class="main-footer">
-        <strong>Stockraft</strong>
-    </footer>
+    <footer class="main-footer"></footer>
 
 </div>
 
