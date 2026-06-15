@@ -8,6 +8,7 @@
             <h3 class="card-title">{{ __('Category List') }}</h3>
         </div>
         <div class="card-body p-0">
+            <div class="table-responsive">
             <table class="table table-bordered table-striped table-hover mb-0">
                 <thead>
                     <tr>
@@ -30,6 +31,7 @@
                     @endforelse
                 </tbody>
             </table>
+            </div>
         </div>
     </div>
 @endsection

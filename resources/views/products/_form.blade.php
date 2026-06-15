@@ -35,7 +35,7 @@
 </div>
 
 <div class="row">
-    <div class="col-md-6">
+    <div class="col-sm-6">
         <div class="form-group">
             <label for="price">{{ __('Price (₽)') }}</label>
             <input type="number" id="price" name="price" step="0.01" min="0"
@@ -46,7 +46,7 @@
             @enderror
         </div>
     </div>
-    <div class="col-md-6">
+    <div class="col-sm-6">
         <div class="form-group">
             <label for="stock">{{ __('Stock') }}</label>
             <input type="number" id="stock" name="stock" min="0"

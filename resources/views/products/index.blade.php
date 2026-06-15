@@ -13,15 +13,16 @@
             </div>
         </div>
         <div class="card-body p-0">
+            <div class="table-responsive">
             <table class="table table-bordered table-striped table-hover mb-0">
                 <thead>
                     <tr>
                         <th>{{ __('Name') }}</th>
-                        <th>{{ __('Category') }}</th>
-                        <th class="text-right">{{ __('Price (₽)') }}</th>
-                        <th class="text-right">{{ __('Stock') }}</th>
-                        <th class="text-center">{{ __('Active') }}</th>
-                        <th class="text-center" style="width: 80px;">{{ __('Actions') }}</th>
+                        <th style="width: 140px;">{{ __('Category') }}</th>
+                        <th class="text-right text-nowrap" style="width: 110px;">{{ __('Price (₽)') }}</th>
+                        <th class="text-right" style="width: 80px;">{{ __('Stock') }}</th>
+                        <th class="text-center" style="width: 70px;">{{ __('Active') }}</th>
+                        <th class="text-center" style="width: 90px;">{{ __('Actions') }}</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -40,7 +41,7 @@
                             </td>
                             <td class="text-center text-nowrap">
                                 <a href="{{ route('products.edit', $product) }}"
-                                   class="btn btn-sm btn-warning mr-1"
+                                   class="btn btn-sm btn-outline-primary mr-1"
                                    title="{{ __('Edit Product') }}">
                                     <i class="fas fa-edit"></i>
                                 </a>
@@ -50,7 +51,7 @@
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit"
-                                            class="btn btn-sm btn-danger"
+                                            class="btn btn-sm btn-outline-danger"
                                             title="{{ __('Delete this product?') }}">
                                         <i class="fas fa-trash"></i>
                                     </button>
@@ -64,6 +65,7 @@
                     @endforelse
                 </tbody>
             </table>
+            </div>
         </div>
         @if ($products->hasPages())
             <div class="card-footer">
